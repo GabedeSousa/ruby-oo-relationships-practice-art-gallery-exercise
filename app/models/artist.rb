@@ -1,16 +1,12 @@
-require 'pry'
-
 class Artist
 
   attr_reader :name, :years_experience
-
   @@all = []
 
   def initialize(name, years_experience)
     @name = name
     @years_experience = years_experience
     @@all << self
-    # binding.pry
   end
 
   def self.all
@@ -18,25 +14,20 @@ class Artist
   end
 
   def paintings
-    Painting.all.select do |my_paintings|
-      my_paintings.artist == self
+    Painting.all.select do |paintings|
+      paintings.artist == self
     end
   end
-  # binding.pry
 
   def galleries
-    paintings.map do |my_gallery|
-      my_gallery.gallery
-      
+    paintings.map do |paintings|
+      paintings.gallery
     end
-    # binding.pry
   end
-  
-  
 
   def cities
-    galleries.map do |painting|
-      painting.city
+    galleries.map do |artist|
+      artist.city
     end
   end
 
@@ -52,9 +43,11 @@ class Artist
     end
   end
 
-  def create_painting
-     Painting.new(title, price, self ,gallery)
+  def create_painting(title, price)
+    Painting.new(price, title, self, gallery)
   end
 
+  
 
- end
+
+end

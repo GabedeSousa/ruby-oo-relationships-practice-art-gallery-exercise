@@ -1,27 +1,27 @@
-require 'pry'
-
 class Painting
-
-  attr_reader :title, :price, :artist , :gallery
+  
+  attr_reader :price, :title, :artist, :gallery
 
   @@all = []
 
-  def initialize(title, price, artist, gallery)
-    @title = title
+  def initialize(price, title, artist, gallery)
     @price = price
+    @title = title 
     @artist = artist
-    @gallery = gallery
+    @gallery = gallery  
     @@all << self
+  end
+
+
+  def self.total_price
+    self.all.reduce(0) do |sum, paintings|
+      sum + paintings.price
+    end
   end
 
   def self.all
     @@all
   end
 
-  def self.total_price
-    self.all.reduce(0) do |sum, painting|
-      sum + painting.price
-    end
-  end
 
 end

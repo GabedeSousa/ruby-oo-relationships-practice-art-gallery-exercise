@@ -1,7 +1,5 @@
-require 'pry'
-
 class Gallery
-
+  
   attr_reader :name, :city
 
   @@all = []
@@ -12,32 +10,31 @@ class Gallery
     @@all << self
   end
 
-  def self.all
-    @@all
-  end
-
   def paintings
-    Painting.all.select do |painting|
-      painting.gallery == self
-    end
+      Painting.all.select do |painting|
+        painting.gallery == self
+      end
   end
 
-  def artist
+  def artists
     paintings.map do |painting|
       painting.artist
     end
   end
 
-  def artist_name
-    gallery.map do |painting|
-      painting.name
+  def artist_names
+    artists.map do |artist|
+      artist.name
     end
   end
 
   def most_expensive_painting
-    painting.max_by do |painting|
-      painting.price
+    paintings.max_by do |pricey|
+      pricey.price 
     end
   end
-
+  
+  def self.all
+    @@all
+  end
 end
